@@ -26,6 +26,6 @@ public class UserCreateResponseModel {
     private String username;
 
     @NotBlank
-    @Size(min = 6, max = 40)
+    @Size(min = 6, max = 20)
     private String password;
 }
