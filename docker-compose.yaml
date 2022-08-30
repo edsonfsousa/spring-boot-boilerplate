@@ -1,0 +1,19 @@
+version: "3.5"
+services:
+  canon-backend:
+    image: edsonfsousa/spring-boot-boilerplate:v1
+    container_name: spring-boot-boilerplate
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+        reservations:
+          memory: 700M
+    environment:
+      JDBC_DATASOURCE_JDBC: jdbc:postgresql://host.docker.internal:5432/boilerplate_db
+      JDBC_DATASOURCE_USERNAME: postgres
+      JDBC_DATASOURCE_PASSWORD: qwe123*
