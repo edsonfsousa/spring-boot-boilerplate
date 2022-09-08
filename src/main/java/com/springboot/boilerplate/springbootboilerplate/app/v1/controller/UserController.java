@@ -1,34 +1,32 @@
 package com.springboot.boilerplate.springbootboilerplate.app.v1.controller;
 
-import com.springboot.boilerplate.springbootboilerplate.app.v1.io.user.UserCreateRequestModel;
-import com.springboot.boilerplate.springbootboilerplate.app.v1.io.user.UserCreateResponseModel;
+import com.springboot.boilerplate.springbootboilerplate.app.v1.io.UserRequestModel;
 import com.springboot.boilerplate.springbootboilerplate.app.v1.open_api.UserControllerOpenApi;
-import com.springboot.boilerplate.springbootboilerplate.domain.entity.UserEntity;
 import com.springboot.boilerplate.springbootboilerplate.domain.mapper.UserMapper;
+import com.springboot.boilerplate.springbootboilerplate.domain.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
-@RequestMapping(path = "v1/user", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*")
+@RequestMapping(path = "v1/users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController implements UserControllerOpenApi {
 
-    private final UserMapper mapper;
+    private final UserService userService;
 
-    public UserController(UserMapper mapper) {
-        this.mapper = mapper;
+    private final UserMapper usermapper;
+
+    public UserController(UserMapper usermapper, UserService userService) {
+        this.usermapper = usermapper;
+        this.userService = userService;
     }
 
     @PostMapping
-    public ResponseEntity<UserCreateResponseModel> create(@RequestBody UserCreateRequestModel input) {
-        UserEntity userEntity = mapper.toUserEntity(input);
-        UserCreateResponseModel userCreateResponseModel = mapper.toUserCreateResponseModel(userEntity);
-        UserCreateRequestModel userCreateRequestModel = mapper.toUserCreateRequestModel(userEntity);
-
-        return new ResponseEntity<>(userCreateResponseModel, HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(@Valid UserRequestModel userRequestModel) {
+        userService.create(userRequestModel);
     }
 }

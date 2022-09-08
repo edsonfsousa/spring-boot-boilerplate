@@ -1,4 +1,4 @@
-package com.springboot.boilerplate.springbootboilerplate.app.v1.io.user;
+package com.springboot.boilerplate.springbootboilerplate.app.v1.io;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,14 +13,27 @@ import javax.validation.constraints.Size;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserCreateRequestModel {
+public class UserRequestModel {
+
+    @NotBlank
+    @Size(min = 3, max = 60)
+    @Column(nullable = false, length = 20, unique = true)
+    private String name;
 
     @NotBlank
     @Size(min = 3, max = 20)
-    @Column(name = "username", nullable = false, length = 20, unique = true)
+    @Column(nullable = false, length = 20, unique = true)
     private String username;
+
+    @NotBlank
+    @Size(min = 3, max = 30)
+    private String city;
 
     @NotBlank
     @Size(min = 6, max = 20)
     private String password;
+
+    @NotBlank
+    @Size(min = 3, max = 40)
+    private String address;
 }

@@ -1,7 +1,7 @@
 package com.springboot.boilerplate.springbootboilerplate.domain.mapper.impl.model_mapper;
 
-import com.springboot.boilerplate.springbootboilerplate.app.v1.io.user.UserCreateRequestModel;
-import com.springboot.boilerplate.springbootboilerplate.app.v1.io.user.UserCreateResponseModel;
+import com.springboot.boilerplate.springbootboilerplate.app.v1.io.UserRequestModel;
+import com.springboot.boilerplate.springbootboilerplate.app.v1.io.UserResponseModel;
 import com.springboot.boilerplate.springbootboilerplate.domain.entity.UserEntity;
 import com.springboot.boilerplate.springbootboilerplate.domain.mapper.UserMapper;
 import org.modelmapper.ModelMapper;
@@ -18,17 +18,17 @@ public class UserMapperModelMapperImpl implements UserMapper {
     }
 
     @Override
-    public UserEntity toUserEntity(UserCreateRequestModel input) {
+    public UserEntity toUserEntity(UserRequestModel input) {
         return mapper.map(input, UserEntity.class);
     }
 
     @Override
-    public UserCreateRequestModel toUserCreateRequestModel(UserEntity input) {
-        return mapper.map(input, UserCreateRequestModel.class);
+    public UserRequestModel toUserCreateRequestModel(UserEntity input) {
+        return mapper.map(input, UserRequestModel.class);
     }
 
     @Override
-    public UserCreateResponseModel toUserCreateResponseModel(UserEntity input) {
-        return mapper.map(input, UserCreateResponseModel.class);
+    public UserResponseModel toUserCreateResponseModel(UserEntity input) {
+        return mapper.map(input, UserResponseModel.class);
     }
 }

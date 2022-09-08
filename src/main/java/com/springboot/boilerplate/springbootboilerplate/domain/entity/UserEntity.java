@@ -11,7 +11,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,12 +30,19 @@ public class UserEntity extends BaseEntity {
     private String username;
 
     @NotBlank
-    @Size(min = 6, max = 20)
+    @Size(min = 6, max = 30)
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "email")
-    private String email;
+    @NotBlank
+    @Size(min = 3, max = 20)
+    @Column(name = "city", nullable = false, length = 20)
+    private String city;
+
+    @NotBlank
+    @Size(min = 3, max = 40)
+    @Column(name = "address", nullable = false, length = 20)
+    private String address;
 
     @Column(name = "deleted")
     private Boolean deleted = false;
