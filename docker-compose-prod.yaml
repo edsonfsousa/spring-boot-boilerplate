@@ -1,0 +1,48 @@
+version: "3.5"
+services:
+  springboot_boilerplate_api:
+    image: edsonfsousa/springboot_boilerplate_api:v1
+    container_name: springboot_boilerplate_api
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+        reservations:
+          memory: 700M
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+    environment:
+      JDBC_DATASOURCE_JDBC: jdbc:postgresql://host.docker.internal:5432/boilerplate_db
+      JDBC_DATASOURCE_USERNAME: postgres
+      JDBC_DATASOURCE_PASSWORD: qwe123*
+    depends_on:
+      - postgres
+    networks:
+      - springboot-boilerplate-network
+
+  postgres:
+    image: postgres
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-senha_forte}
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - springboot-boilerplate-network
+
+networks:
+  springboot-boilerplate-network:
+    name: springboot-boilerplate-network
+    driver: bridge

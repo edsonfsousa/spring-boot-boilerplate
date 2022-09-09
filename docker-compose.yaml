@@ -1,6 +1,6 @@
 version: "3.5"
 services:
-  canon-backend:
+  spring-boot-boilerplate:
     image: edsonfsousa/spring-boot-boilerplate:v1
     container_name: spring-boot-boilerplate
     restart: always
