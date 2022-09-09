@@ -8,8 +8,6 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -19,29 +17,22 @@ import javax.validation.constraints.Size;
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
-    @NotBlank
-    @Size(min = 3, max = 60)
-    @Column(name = "name", nullable = false, length = 60)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @NotBlank
-    @Size(min = 3, max = 20)
-    @Column(name = "username", nullable = false, length = 20, unique = true)
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @NotBlank
-    @Size(min = 6, max = 30)
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
     @Column(name = "password", nullable = false)
     private String password;
 
-    @NotBlank
-    @Size(min = 3, max = 20)
-    @Column(name = "city", nullable = false, length = 20)
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @NotBlank
-    @Size(min = 3, max = 40)
-    @Column(name = "address", nullable = false, length = 20)
+    @Column(name = "address", nullable = false)
     private String address;
 
     @Column(name = "deleted")

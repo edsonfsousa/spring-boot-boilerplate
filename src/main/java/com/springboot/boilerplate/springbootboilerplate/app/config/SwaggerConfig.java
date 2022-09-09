@@ -39,6 +39,7 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("v1.0")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(PROJECT_BASE_PACKAGE))
                 .paths(PathSelectors.any())

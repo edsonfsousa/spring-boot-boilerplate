@@ -11,7 +11,7 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponseModel {
+public class UserDetailedResponse {
 
     private UUID id;
 
