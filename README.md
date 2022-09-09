@@ -5,6 +5,7 @@ practical project, serving to get started quickly in development with a ready-to
 
 ## Technologies
 
+- [Java](https://devdocs.io/openjdk~11/) (v11)
 - [Spring Boot](https://spring.io/projects/spring-boot) (v2.5.2)
 - [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
 - [Maven](https://maven.apache.org/) (v4.0.0)
